@@ -1,6 +1,9 @@
 import { NavLink } from "react-router-dom"
+import { Context } from "../../Context"
+import { useContext } from "react"
 
 const NavBar = () =>{
+    const context = useContext(Context)
     const activeStyles = 'underline underline-offset-4'
     return(
         <nav className='flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light'>
@@ -18,7 +21,7 @@ const NavBar = () =>{
                 <li><NavLink to='/my-orders' className={({isActive})=> isActive ? activeStyles : undefined}>My Orders</NavLink></li>
                 <li><NavLink to='/my-account' className={({isActive})=> isActive ? activeStyles : undefined}>My Account</NavLink></li>
                 <li><NavLink to='/sign-in' className={({isActive})=> isActive ? activeStyles : undefined}>Sign-In</NavLink></li>
-                <li>🛒0</li>
+                <li>🛒 { context.count }</li>
                 
             </ul>
         </nav>
