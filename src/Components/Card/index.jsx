@@ -3,6 +3,10 @@ import { Context } from "../../Context";
 
 const Card = (data) => {
   const context = useContext(Context);
+  const showProduct = (productDetail) =>{
+    context.toggleOpenProductDetail()
+    context.setProductToShow(productDetail)
+  }
   return (
     <div className="bg-white cursor-pointer w-56 h-60 rounded-lg">
       <figure className="relative mb-2 w-full h-4/5">
@@ -10,6 +14,7 @@ const Card = (data) => {
           {data.data.category.name}
         </span>
         <img
+          onClick={() => showProduct(data.data)}
           className="w-full h-full object-cover rounded-lg"
           src={data.data.images[0]}
           alt={data.data.title}

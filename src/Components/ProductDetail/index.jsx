@@ -1,10 +1,15 @@
+import { useContext } from "react";
+import { Context } from "../../Context";
+
 const ProductDetail = () => {
+  const context = useContext(Context)
+
   return (
-    <aside className="flex flex-col fixed right-0 border bg-white border-black rounded-lg w-[360px] h-[calc(100vh-80px)]> top-68">
+    <aside className={`${context.openProductDetail ? 'flex' : 'hidden'} flex-col fixed right-0 border bg-white border-black rounded-lg w-[360px] h-[calc(100vh-80px)]> top-68`}>
       <div className="flex justify-between items-center p-6">
         <h2 className="font-medium text-xl">Detail</h2>
         <div>
-          <button>
+          <button onClick={context.toggleCloseProductDetail}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -22,6 +27,15 @@ const ProductDetail = () => {
           </button>
         </div>
       </div>
+      <figure className='px-6'>
+        <img className='w-full h-full rounded-lg' 
+        src={context.productToShow.images ? context.productToShow.images[0]: ''} />
+      </figure>
+      <p className='flex flex-col p-6'>
+        <span className='font-medium text-2xl mb-2'>${context?.productToShow?.price}</span>
+        <span className='font-medium text-md'>${context?.productToShow?.title}</span>
+        <span className='font-light text-sm'>${context?.productToShow?.description}</span>
+      </p>
     </aside>
   );
 };
